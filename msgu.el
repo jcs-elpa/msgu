@@ -37,23 +37,24 @@
   :group 'convenience
   :link '(url-link :tag "Repository" "https://github.com/jcs-elpa/msgu"))
 
-(defmacro msgu-unsilent (&rest body)
-  "Execute BODY with ensuring message log."
+(defmacro msgu-inhibit-log (&rest body)
+  "Execute BODY without write it to message buffer."
   (declare (indent 0) (debug t))
-  `(let ((message-log-max 1000)) ,@body))
+  `(let (message-log-max) ,@body))
 
 ;;;###autoload
 (defmacro msgu-silent (&rest body)
   "Execute BODY without message."
   (declare (indent 0) (debug t))
-  `(let (message-log-max)
+  `(msgu-inhibit-log
      (with-temp-message (or (current-message) nil)
        (let ((inhibit-message t)) ,@body))))
 
-(defmacro msgu-no-log-apply (&rest body)
-  "Execute BODY without write it to message buffer."
+;;;###autoload
+(defmacro msgu-unsilent (&rest body)
+  "Execute BODY with ensuring message log."
   (declare (indent 0) (debug t))
-  `(let (message-log-max) ,@body))
+  `(let ((message-log-max 1000)) ,@body))
 
 ;;;###autoload
 (defun msgu-current (fmt &rest args)
