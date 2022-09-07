@@ -31,6 +31,12 @@
 
 ;;; Code:
 
+(defgroup msgu nil
+  "Utility functions help output the messages."
+  :prefix "msgu-"
+  :group 'convenience
+  :link '(url-link :tag "Repository" "https://github.com/jcs-elpa/msgu"))
+
 (defmacro msgu-unsilent (&rest body)
   "Execute BODY with ensuring message log."
   (declare (indent 0) (debug t))
