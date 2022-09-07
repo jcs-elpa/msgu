@@ -1,2 +1,2 @@
-# msg-utils
-Some message utilities
+# msgu
+> Utility functions help output the messages
