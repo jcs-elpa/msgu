@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 0.1.1 (Unreleased)
 > Released N/A
 
-* N/A
+* Add utility functions `sleep`/`sit` (5f1d14db7695109a12ce30346beb2d5523981c4c)
 
 ## 0.1.0
 > Released Sep 07, 2022
