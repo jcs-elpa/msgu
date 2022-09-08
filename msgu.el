@@ -62,15 +62,6 @@
   (declare (indent 0) (debug t))
   `(let ((message-log-max msgu-log-max)) ,@body))
 
-;;;###autoload
-(defun msgu-current (fmt &rest args)
-  "Log messages with current message on top if available.
-
-Arguments FMT and ARGS are used for format message."
-  (message "%s%s"
-           (if (current-message) (concat (current-message) "\n\n") "")
-           (apply #'format fmt args)))
-
 ;;
 ;; (@* "Util" )
 ;;
@@ -112,6 +103,24 @@ Arguments FMT and ARGS are used for format message."
       (goto-char (point-max))
       (let ((inhibit-read-only t))
         (insert (apply 'format fmt args))))))
+
+;;
+;; (@* "Others" )
+;;
+
+(defcustom msgu-currnet-format "%s\n\n"
+  "String use to format current message."
+  :type 'string
+  :group 'msgu)
+
+;;;###autoload
+(defun msgu-current (fmt &rest args)
+  "Log messages with current message on top if available.
+
+Arguments FMT and ARGS are used for format message."
+  (message "%s%s"
+           (if (current-message) (format msgu-currnet-format (current-message)) "")
+           (apply #'format fmt args)))
 
 (provide 'msgu)
 ;;; msgu.el ends here
