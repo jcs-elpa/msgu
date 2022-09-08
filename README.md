@@ -6,6 +6,55 @@
 
 [![CI](https://github.com/jcs-elpa/msgu/actions/workflows/test.yml/badge.svg)](https://github.com/jcs-elpa/msgu/actions/workflows/test.yml)
 
+## 🔧 Usage
+
+### msgu-silent
+
+Silent a code block.
+
+```elisp
+(msgu-silent
+  (message "This cannot be seen..."))
+```
+
+### msgu-unsilent
+
+Unsilent a code block.
+
+```elisp
+(msgu-unsilent
+  (message "This can be seen!"))
+```
+
+### msgu-inhibit-log
+
+Display in echo area, but don't output to `*Messages*` buffer.
+
+```elisp
+(msgu-inhibit-log
+  (message "Display message in Echo area!"))
+```
+
+### msgu-current
+
+Print message with last message above.
+
+```elisp
+(message "This is last message.")        ; set current message
+
+(msgu-current "New message!~")  ; output with last message
+```
+
+output:
+
+```
+This is last message.
+
+New message!~
+```
+
+You can `msgu-currnet-format` to adjust string format, default is `"%s\n\n"`.
+
 ## Contribute
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
