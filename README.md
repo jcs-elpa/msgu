@@ -35,9 +35,17 @@ Display in echo area, but don't output to `*Messages*` buffer.
   (message "Display message in Echo area!"))
 ```
 
-### msgu-current
+### msgu-color `(fmt args)`
 
-Print message with last message above.
+Print a message with color.
+
+```elisp
+(msgu-color (propertize "red" 'face '(:foreground "red")))
+```
+
+### msgu-current `(fmt args)`
+
+Print a message with the last message above.
 
 ```elisp
 (message "This is last message.")        ; set current message
