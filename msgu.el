@@ -43,6 +43,7 @@
   :type 'integer
   :group 'msgu)
 
+;;;###autoload
 (defmacro msgu-inhibit-log (&rest body)
   "Execute BODY without write it to message buffer."
   (declare (indent 0) (debug t))
