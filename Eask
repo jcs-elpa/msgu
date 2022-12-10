@@ -7,6 +7,8 @@
 
 (package-file "msgu.el")
 
+(script "test" "echo \"Error: no test specified\" && exit 1")
+
 (source "gnu")
 
 (depends-on "emacs" "26.1")
