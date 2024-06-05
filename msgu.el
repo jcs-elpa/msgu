@@ -67,6 +67,20 @@
 ;; (@* "Util" )
 ;;
 
+(defun msgu-2str (obj)
+  "Convert OBJ to string."
+  (format "%s" obj))
+
+(defun msgu--count-matches (pattern str)
+  "Count occurrences of PATTERN in STR.
+
+Like function `s-count-matches' but faster."
+  (max 0 (1- (length (split-string str pattern)))))
+
+;;
+;; (@* "Delay" )
+;;
+
 (defcustom msgu-sleep-seconds 0.4
   "Default seconds to sleep after calling `msgu-sleep' function."
   :type 'number
@@ -119,9 +133,16 @@ Arguments FMT and ARGS are used for format message."
   "Log messages with current message on top if available.
 
 Arguments FMT and ARGS are used for format message."
-  (message "%s%s"
-           (if (current-message) (format msgu-currnet-format (current-message)) "")
-           (apply #'format fmt args)))
+  (let* ((msg (current-message))
+         (one-line (and msg (<= (msgu--count-matches "\n" msg) 1))))
+    (message "%s%s"
+             (cond (one-line
+                    (msgu-2str msg))
+                   (msg
+                    (format msgu-currnet-format msg))
+                   (t
+                    ""))
+             (apply #'format fmt args))))
 
 (provide 'msgu)
 ;;; msgu.el ends here
