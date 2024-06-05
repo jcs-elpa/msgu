@@ -134,7 +134,7 @@ Arguments FMT and ARGS are used for format message."
 
 Arguments FMT and ARGS are used for format message."
   (let* ((msg (current-message))
-         (one-line (and msg (<= (msgu--count-matches "\n" msg) 1))))
+         (one-line (and msg (< (msgu--count-matches "\n" msg) 1))))
     (message "%s%s"
              (cond (one-line
                     (msgu-2str msg))
