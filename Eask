@@ -1,3 +1,5 @@
+;; -*- mode: eask; lexical-binding: t -*-
+
 (package "msgu"
          "0.1.0"
          "Utility functions help output the messages")
